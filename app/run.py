@@ -7,7 +7,7 @@ from utils.model import image_predictor
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
-ALLOWED_EXTENSIONS = set(['JPG', 'jpg', 'jpeg'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 def is_file_allowed(filename):
     """
@@ -20,20 +20,13 @@ def is_file_allowed(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/image/dog_breed_classification/v1', methods=["POST"])
-def message_stat():
+def dog_breed_classification():
     if request.method == 'POST':
         try:
             file = request.files['file']
             if file and is_file_allowed(file.filename):
-                # filename = secure_filename(file.filename)
-                # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                # file_url = url_for('send_file', filename=filename)
-                # file_for_app = '/home/workspace/CapstoneProject/uploads/'+filename
-                
                 result = image_predictor(file.stream.read())
-                return {
-                    'result': result
-                }
+                return { 'result': result }
             else:
                 # file not supported
                 abort(400)

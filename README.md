@@ -65,7 +65,7 @@ Please refer to the jupter notebook for data exploration, model training, model 
 ## Screenshots
 
 1. This is the home page to the app:
-![Home page](screenshots/home.png)
+![Home page](screenshots/app.png)
 
-2. After upload image and clicking **Submit** button, we can see the result as a text:
+2. After select the image and auto upload , we can see the result as a text:
 ![Sample result](screenshots/result.png)
